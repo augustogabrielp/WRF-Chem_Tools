@@ -108,10 +108,10 @@ $ vi ~/.bashrc
 
 # Incluir as seguinte linhas no final de .bashrc
 export PATH=$DIR/mpich/bin:$PATH
+# aperte "esc" e digite ":wq" para salvar e sair
 
 # Carregue a atualização do .bashrc
 $ source ~/.bashrc
-
 
 
 
@@ -131,6 +131,17 @@ $ cd libpng-1.2.59
 $ ./configure --prefix=$DIR/grib2
 $ make
 $ make install
+
+# Editar o ~/.bashrc
+$ vi ~/.bashrc
+# Aperte a tecla "i" para editar o .bashrc
+
+# Incluir as seguinte linhas no final de .bashrc
+export LD_LIBRARY_PATH=/home/augusto.pereira/BUILD_WRF/LIBRARIES/libpng-1.2.59/build/lib:$LD_LIBRARY_PATH
+# aperte "esc" e digite ":wq" para salvar e sair
+
+# Carregue a atualização do .bashrc
+$ source ~/.bashrc
 
 
 
@@ -179,6 +190,23 @@ $ mpirun ./a.out
 wget https://github.com/wrf-model/WRF/archive/refs/tags/v4.3.3.tar.gz
 tar -xvzf v4.3.3.tar.gz
 cd WRF-4.3.3
+
+# Editar o ~/.bashrc
+$ vi ~/.bashrc
+# Aperte a tecla "i" para editar o .bashrc
+
+# Incluir as seguinte linhas no final de .bashrc
+export WRF_DIR=/home/augusto.pereira/BUILD_WRF/WRF-4.3.3
+# aperte "esc" e digite ":wq" para salvar e sair
+
+# Carregue a atualização do .bashrc
+$ source ~/.bashrc
+
+
+
+
+
+
 ./configure
 # selecionar opcoes:
 # 34

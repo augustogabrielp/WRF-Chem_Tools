@@ -269,12 +269,17 @@ $ vi configure.wrf
 $ ./compile em_real >& compile.log & tail -f compile.log
 
 
+# Compile the WRF-Chem external emissions conversion code
+./compile emi_conv 2>1 | tee emission_compile.log
+
+
 $ ls -las main/*.exe
 # resultado:
-21322 -rwxrwxr-x 1 augusto.pereira augusto.pereira 45073112 Jan 14 15:26 main/ndown.exe
-21303 -rwxrwxr-x 1 augusto.pereira augusto.pereira 44954192 Jan 14 15:26 main/real.exe
-20938 -rwxrwxr-x 1 augusto.pereira augusto.pereira 44397328 Jan 14 15:26 main/tc.exe
-24167 -rwxrwxr-x 1 augusto.pereira augusto.pereira 49175496 Jan 14 15:25 main/wrf.exe
+lrwxrwxrwx 1 augusto.pereira augusto.pereira 28 Jan 20 12:38 test/em_real/convert_emiss.exe -> ../../chem/convert_emiss.exe
+lrwxrwxrwx 1 augusto.pereira augusto.pereira 20 Jan 20 12:22 test/em_real/ndown.exe -> ../../main/ndown.exe
+lrwxrwxrwx 1 augusto.pereira augusto.pereira 19 Jan 20 12:22 test/em_real/real.exe -> ../../main/real.exe
+lrwxrwxrwx 1 augusto.pereira augusto.pereira 17 Jan 20 12:22 test/em_real/tc.exe -> ../../main/tc.exe
+lrwxrwxrwx 1 augusto.pereira augusto.pereira 18 Jan 20 12:22 test/em_real/wrf.exe -> ../../main/wrf.exe
 
 
 
@@ -314,6 +319,7 @@ $ source ~/.bashrc
 
 
 $ ./configure
+# Select option 3 (Linux x86-64) gfortran (dmpar) for gfortran and distributed memory
 $ ./compile >& compile.log & tail -f compile.log
 
 
@@ -323,3 +329,101 @@ $ ls -ls *.exe
 1 lrwxrwxrwx 1 augusto.pereira augusto.pereira 23 Jan  9 16:05 geogrid.exe -> geogrid/src/geogrid.exe
 1 lrwxrwxrwx 1 augusto.pereira augusto.pereira 23 Jan  9 16:05 metgrid.exe -> metgrid/src/metgrid.exe
 1 lrwxrwxrwx 1 augusto.pereira augusto.pereira 21 Jan  9 16:05 ungrib.exe -> ungrib/src/ungrib.exe
+
+
+
+
+
+
+
+
+
+
+## --------------------------------------------------------------------
+# Instalar o WRFDA 
+## --------------------------------------------------------------------
+
+
+
+
+
+$ ulimit -s unlimited
+$ export MALLOC_CHECK_=0
+$ export WRFIO_NCD_LARGE_FILE_SUPPORT=1 
+$ export EM_CORE=1
+$ export NMM_CORE=0
+
+
+
+cd /home/augusto.pereira/BUILD_WRF
+mkdir WRFDA
+cd /home/augusto.pereira/BUILD_WRF/WRFDA
+
+cp /home/augusto.pereira/BUILD_WRF/v4.3.1.tar.gz /home/augusto.pereira/BUILD_WRF/WRFDA
+tar -xvzf v4.3.3.tar.gz
+cd /home/augusto.pereira/BUILD_WRF/WRFDA//WRF-4.3.3
+
+ ./configure wrfda
+ # 34
+
+
+
+
+ # Preste bem atencao no arquivo "configure.wrf". Dentro do "configure.wrf" possui um caminho para o diretorio "time" mas o Egeon não tem esse diretorio "time".
+
+# Vamos fazer uma busca pelo "time" dentro do arquivo. Busca sera a seguinte: quero saber quais os numeros das linhas que tem o nome "time". Use o seguinte comando:
+
+$ grep -n "time" configure.wrf
+
+# A saida sera mais ou menos assim:
+10:# file but be aware they will be overwritten each time you run configure.
+78:ESMF_MOD_DEPENDENCE = $(WRF_SRC_ROOT_DIR)/external/esmf_time_f90/module_utility.o
+79:# select -I options for external/io_esmf vs. external/esmf_time_f90
+80:ESMF_IO_INC         = -I$(WRF_SRC_ROOT_DIR)/external/esmf_time_f90
+83:# select cpp token for external/io_esmf vs. external/esmf_time_f90
+85:# select build target for external/io_esmf vs. external/esmf_time_f90
+86:ESMF_TARGET         = esmf_time
+139:FC              =       time $(DM_FC)
+213: ESMF_IO_LIB     =    -L$(WRF_SRC_ROOT_DIR)/external/esmf_time_f90 -lesmf_time
+214:ESMF_IO_LIB_EXT =    -L$(WRF_SRC_ROOT_DIR)/external/esmf_time_f90 -lesmf_time
+243:io_only:  esmf_time wrfio_nf   \
+299:esmf_time :
+300:    ( cd $(WRF_SRC_ROOT_DIR)/external/esmf_time_f90 ; \
+
+# Veja que a linha 139 esta direcionando para o diretorio "time" mais o caminho para "$(DM_FC)".
+
+# Vamos deixar somente "$(DM_FC)".
+
+# Editar o "configure.wrf".
+
+$ vi configure.wrf
+
+10:# file but be aware they will be overwritten each time you run configure.
+78:ESMF_MOD_DEPENDENCE = $(WRF_SRC_ROOT_DIR)/external/esmf_time_f90/module_utility.o
+79:# select -I options for external/io_esmf vs. external/esmf_time_f90
+80:ESMF_IO_INC         = -I$(WRF_SRC_ROOT_DIR)/external/esmf_time_f90
+83:# select cpp token for external/io_esmf vs. external/esmf_time_f90
+85:# select build target for external/io_esmf vs. external/esmf_time_f90
+86:ESMF_TARGET         = esmf_time
+139:FC              =       $(DM_FC) # time $(DM_FC)
+213: ESMF_IO_LIB     =    -L$(WRF_SRC_ROOT_DIR)/external/esmf_time_f90 -lesmf_time
+214:ESMF_IO_LIB_EXT =    -L$(WRF_SRC_ROOT_DIR)/external/esmf_time_f90 -lesmf_time
+243:io_only:  esmf_time wrfio_nf   \
+299:esmf_time :
+300:    ( cd $(WRF_SRC_ROOT_DIR)/external/esmf_time_f90 ; \
+# Comentei "time $(DM_FC)" e deixei somente "$(DM_FC)"
+
+
+
+ ./compile all_wrfvar 2>&1 | tee compile_wrfda.log
+
+
+ ls -l var/build/*exe var/obsproc/src/obsproc.exe
+ # resultado: 44 executáveis
+
+
+
+
+
+
+

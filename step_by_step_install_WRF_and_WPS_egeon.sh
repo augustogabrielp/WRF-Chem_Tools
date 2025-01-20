@@ -415,11 +415,54 @@ $ vi configure.wrf
 
 
 
- ./compile all_wrfvar 2>&1 | tee compile_wrfda.log
+./compile all_wrfvar >& compile.out
 
 
  ls -l var/build/*exe var/obsproc/src/obsproc.exe
  # resultado: 44 executáveis
+-rwxrwxr-x 1 augusto.pereira augusto.pereira    35416 Jan 20 14:58 var/build/da_advance_time.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira   115208 Jan 20 14:59 var/build/da_bias_airmass.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira   106592 Jan 20 14:58 var/build/da_bias_scan.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira    48696 Jan 20 14:58 var/build/da_bias_sele.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira    61392 Jan 20 14:58 var/build/da_bias_verif.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira   135080 Jan 20 14:58 var/build/da_tune_obs_desroziers.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira   281120 Jan 20 14:59 var/build/da_tune_obs_hollingsworth1.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira   186880 Jan 20 14:59 var/build/da_tune_obs_hollingsworth2.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2131848 Jan 20 14:59 var/build/da_update_bc.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2090992 Jan 20 14:59 var/build/da_update_bc_ad.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2180744 Jan 20 14:59 var/build/da_verif_grid.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  1815776 Jan 20 14:59 var/build/da_verif_obs.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira 25497528 Jan 20 15:02 var/build/da_wrfvar.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2782800 Jan 20 14:59 var/build/gen_be_addmean.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2761048 Jan 20 14:59 var/build/gen_be_cov2d.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2773536 Jan 20 14:59 var/build/gen_be_cov2d3d_contrib.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2761048 Jan 20 14:59 var/build/gen_be_cov3d.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2773536 Jan 20 14:59 var/build/gen_be_cov3d2d_contrib.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2769448 Jan 20 14:59 var/build/gen_be_cov3d3d_bin3d_contrib.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2777632 Jan 20 14:59 var/build/gen_be_cov3d3d_contrib.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2752856 Jan 20 14:59 var/build/gen_be_diags.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2769432 Jan 20 14:59 var/build/gen_be_diags_read.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2765248 Jan 20 14:59 var/build/gen_be_ensmean.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2781664 Jan 20 14:59 var/build/gen_be_ensrf.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2842968 Jan 20 14:59 var/build/gen_be_ep1.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2916840 Jan 20 14:59 var/build/gen_be_ep2.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2839432 Jan 20 14:59 var/build/gen_be_etkf.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2769240 Jan 20 14:59 var/build/gen_be_hist.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2872408 Jan 20 14:59 var/build/gen_be_stage0_gsi.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2892592 Jan 20 14:59 var/build/gen_be_stage0_wrf.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2810200 Jan 20 14:59 var/build/gen_be_stage1.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2802016 Jan 20 14:59 var/build/gen_be_stage1_1dvar.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2802256 Jan 20 14:59 var/build/gen_be_stage1_gsi.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2785624 Jan 20 14:59 var/build/gen_be_stage2.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2802104 Jan 20 14:59 var/build/gen_be_stage2_1dvar.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  1505616 Jan 20 14:59 var/build/gen_be_stage2_gsi.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2773344 Jan 20 14:59 var/build/gen_be_stage2a.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2781528 Jan 20 14:59 var/build/gen_be_stage3.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2756960 Jan 20 14:59 var/build/gen_be_stage4_global.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2790032 Jan 20 14:59 var/build/gen_be_stage4_regional.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2757040 Jan 20 14:59 var/build/gen_be_vertloc.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  2892312 Jan 20 14:59 var/build/gen_mbe_stage2.exe
+-rwxrwxr-x 1 augusto.pereira augusto.pereira  1105360 Jan 20 15:02 var/obsproc/src/obsproc.exe
 
 
 

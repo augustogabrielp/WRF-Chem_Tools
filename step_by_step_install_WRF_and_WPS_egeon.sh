@@ -469,4 +469,16 @@ $ vi configure.wrf
 
 
 
+# prep chem sources
+cd /home/augusto.pereira/BUILD_WRF/
+mkdir prep_chem
+# wget ftp://aftp.fsl.noaa.gov/divisions/taq/global_emissions/prep_chem_sources_v1.5_24aug2015.tar.gz
+# https://www.youtube.com/watch?v=d6zhi4gPbgw&list=PL93HaRiv5QkA_LyLj9rbbBD0QY2imFop0&index=2
+
+
+
+
+
+
+
 

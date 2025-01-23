@@ -203,7 +203,14 @@ export WRF_DIR=/home/augusto.pereira/BUILD_WRF/WRF-4.3.3
 $ source ~/.bashrc
 
 
-
+# ************************************************************
+# Put the Variables for activate the core ARW and chem module
+# https://github.com/hectornav/Install-WRF-Chem/blob/master/installing-WRF-CHEM
+# ************************************************************
+$ export WRF_EM_CORE=1
+$ export WRF_NMM_CORE=0               
+$ export WRF_CHEM=1
+$ export WRF_KPP=0
 
 
 

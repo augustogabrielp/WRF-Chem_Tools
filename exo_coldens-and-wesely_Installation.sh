@@ -60,6 +60,12 @@ vi Makefile
 # exo_coldens build successful
 # +++++++++++++++++++++++++++++
 
+./make_util wesely
+
+# +++++++++++++++++++++++++++++
+# wesely build successful
+# +++++++++++++++++++++++++++++
+
 
 
 

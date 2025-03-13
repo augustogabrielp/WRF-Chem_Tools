@@ -1,4 +1,4 @@
-# Makefile exo_coldens
+# Makefile exo_coldens and wesely
 
 .SUFFIXES: .o .f90
 

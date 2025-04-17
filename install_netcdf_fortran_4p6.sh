@@ -39,6 +39,24 @@ $ make install
 $ ls $NETCDF/include/netcdf.inc
 
 
+###########################################################################################
+## Alternative to GSI
+###########################################################################################
+
+$ cd /home/augusto.pereira/BUILD_WRF/LIBRARIES/netcdf-c-4.9.2
+$ make clean
+
+# Garanta PIC e shared only
+$ export CFLAGS="-O2 -fPIC"
+$ export CPPFLAGS="-I$PWD/include"
+$ export LDFLAGS="-L$PWD/lib"
+$ ./configure \
+  --prefix=$PWD \
+  --enable-shared --disable-static \
+  CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS"
+$ make -j6
+$ make install
+
 
 
 

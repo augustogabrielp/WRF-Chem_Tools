@@ -210,7 +210,7 @@ $ source ~/.bashrc
 $ export WRF_EM_CORE=1
 $ export WRF_NMM_CORE=0               
 $ export WRF_CHEM=1
-$ export WRF_KPP=1 # or =0
+$ export WRF_KPP=0 # or =1
 
 
 

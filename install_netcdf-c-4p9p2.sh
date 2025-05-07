@@ -29,3 +29,40 @@ $ make install
 $ nc-config --has-hdf5
 
 # If the output is "yes," then it was installed correctly
+
+
+
+
+
+###################################################################################
+#
+# an alternative that might work
+#
+###################################################################################
+# netcdf-c
+
+cd $DIR/netcdf-c-4.9.2
+rm -rf build
+
+
+mkdir build && cd build
+cmake .. \
+  -DCMAKE_INSTALL_PREFIX=$DIR/netcdf \
+  -DBUILD_SHARED_LIBS=ON \
+  -DENABLE_NETCDF_4=ON \
+  -DENABLE_PARALLEL_IO=ON \
+  -DENABLE_BYTERANGE=OFF \
+  -DENABLE_DAP=OFF \
+  -DENABLE_DISPATCH=OFF \
+  -DHDF5_ROOT=$HDF5
+
+
+make VERBOSE=1
+
+
+make -j1 2>&1 | tee build.err
+
+
+make install
+nc-config --has-hdf5  # deve dizer "yes"
+ls $DIR/netcdf/lib/libnetcdf.so

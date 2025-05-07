@@ -39,6 +39,39 @@ $ make install
 $ ls $NETCDF/include/netcdf.inc
 
 
+
+###########################################################################################
+## alternative that might work
+###########################################################################################
+
+# netcdf-fortran
+
+cd $DIR/netcdf-fortran-4.6.0
+rm -rf build
+mkdir build && cd build
+
+
+cmake .. \
+  -DCMAKE_INSTALL_PREFIX=$NETCDF \
+  -DCMAKE_C_COMPILER=gcc \
+  -DCMAKE_Fortran_COMPILER=gfortran \
+  -DNetCDF_DIR=$NETCDF/lib64/cmake/netCDF \
+  -DBUILD_SHARED_LIBS=ON \
+  -DENABLE_LARGE_FILE=ON
+
+
+make -j8
+make install
+
+
+ls $NETCDF/lib64/libnetcdff.so
+nf-config --has-nc4   # deve responder "yes"
+nf-config --flibs     # deve listar "-L.../lib64 -lnetcdff -lnetcdf …"
+
+
+
+
+
 ###########################################################################################
 ## Alternative to GSI
 ###########################################################################################

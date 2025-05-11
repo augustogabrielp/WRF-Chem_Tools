@@ -1,6 +1,5 @@
 
 
-
 # mudar para o diretorio do WRF
 cd /home/augusto.pereira/BUILD_WRF/WRF-4.6.0/test/em_real
 
@@ -93,6 +92,46 @@ vi mozcart.inp
 #######################################################
 
 
+
+
+cd /home/augusto.pereira/BUILD_WRF/Processors/EDGAR/EDGAR-HTAP/MOZCART
+
+
+
+# Criar um aquivo .sh para o anthro_emiss e mozcart.inp conseguirem ler os .nc EDGAR
+
+vi rename_emis.sh
+
+
+
+
+
+#############################
+# Colar o seguinte conteúdo
+#############################
+#!/bin/bash
+# Renomeia emis_tot → anthro em cada NetCDF do MOZCART
+
+for f in /home/augusto.pereira/BUILD_WRF/Processors/EDGAR/EDGAR-HTAP/MOZCART/EDGAR_HTAP_emi_*.nc; do
+  echo "Renomeando variável no arquivo $f"
+  # troca o nome interno e sobrescreve o arquivo original
+  cdo chname,emis_tot,anthro "$f" tmp.nc && mv tmp.nc "$f"
+done
+#######################################################
+# Após criar:
+# esc
+# :wq
+#######################################################
+
+
+
+# Executar o rename_emis.sh
+chmod +x rename_emis.sh
+./rename_emis.sh
+
+
+
+cd /home/augusto.pereira/BUILD_WRF/Processors/ANTHRO/ANTHRO/src
 
 
 ./anthro_emiss < mozcart.inp

@@ -1,0 +1,45 @@
+&control
+
+do_bc     = .true.
+do_ic     = .false.
+domain = 1
+dir_wrf = '/home/augusto.pereira/BUILD_WRF/WRF-4.6.0/test/em_real/'
+dir_moz = '/home/augusto.pereira/BUILD_WRF/Processors/mozbc/'
+fn_moz  = 'waccm-20250710125538085374.nc'
+moz_var_suffix  = ''
+
+spc_map =
+'o3 -> O3',
+'no -> NO',
+'no2 -> NO2',
+'no3 -> NO3',
+'nh3 -> NH3',
+'hno3 -> HNO3',
+'hno4 -> HO2NO2',
+'n2o5 -> N2O5',
+'ho -> OH',
+'ho2 -> HO2',
+'h2o2 -> H2O2',
+'ch4 -> CH4',
+'co -> CO',
+'hcho -> CH2O',
+'ald -> CH3CHO',
+'mgly -> CH3COCHO',
+'gly -> GLYOXAL',
+'pan -> PAN',
+'macr -> MACR',
+'tol -> TOLUENE',
+'dms -> DMS',
+'so2 -> SO2',
+'eth -> C2H6',
+'csl -> CRESOL',
+'ora2 -> CH3COOH',
+'op1 -> CH3OOH',
+'tpan -> MPAN',
+'hc3 -> C3H8',
+'hc5 -> BIGALK',
+'iso -> ISOP',
+'ket -> CH3COCH3',
+'hket -> HYAC',
+'ete -> C2H4',
+/

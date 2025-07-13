@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=wrf_chem
 #SBATCH --partition=PESQ1,PESQ2
-#SBATCH --nodes=4
+#SBATCH --nodes=1
 #SBATCH --ntasks-per-node=96       # 4 × 48 = 192
 #SBATCH --exclusive
 #SBATCH --time=12:00:00
@@ -20,6 +20,6 @@ export WRF_DEBUG_LEVEL=0
 
 echo "Início da execução: $(date)"
 free -m > memoria_inicio.txt
-time mpirun -np 384 ./wrf.exe
+time mpirun -np 96 ./wrf.exe
 free -m >> memoria_fim.txt
 echo "Fim da execução: $(date)"

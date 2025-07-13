@@ -5,19 +5,19 @@ run_minutes                         = 0,
 run_seconds                         = 0,
 start_year                          = 2024,
 start_month                         = 09,
-start_day                           = 01,
+start_day                           = 03,
 start_hour                          = 00,
 start_minute                        = 00,
 start_second                        = 00,
 end_year                            = 2024,
 end_month                           = 09,
-end_day                             = 02, ! ATENCAO
+end_day                             = 04, ! ATENCAO
 end_hour                            = 00, ! ATENCAO
 end_minute                          = 00,
 end_second                          = 00,
 interval_seconds                    = 21600,! 3600 seg = 1 h
 input_from_file                     = .true.,
-history_interval                    = 720, ! 180 min = 3 hrs
+history_interval                    = 180, ! 180 min = 3 hrs
 history_outname                     = "/home/augusto.pereira/output/wrfout_d<domain>_<date>",
 
 
@@ -36,18 +36,18 @@ io_form_auxinput5                   = 2, ! Verificar melhor
 io_form_auxinput6                   = 2,
 io_form_auxinput7                   = 2, ! Verificar melhor
 io_form_auxinput8                   = 2, ! Verificar melhor
-!io_form_auxinput12                  = 2, ! 0,      ! avaliar
+io_form_auxinput12                  = 2, ! 0,      ! avaliar
 auxinput5_inname                    = 'wrfchemi_d<domain>_<date>',
 auxinput6_inname                    = 'wrfbiochemi_d<domain>'
 auxinput7_inname                    = 'wrffirechemi_d<domain>_<date>',
 auxinput8_inname                    = 'wrfchemi_gocart_bg_d<domain>_<date>',
-!auxinput12_inname                   = 'wrf_chem_input',                ! avaliar
+auxinput12_inname                   = 'wrf_chem_input',                ! avaliar
 frames_per_auxinput5                = 1,
 frames_per_auxinput6                = 1,
 frames_per_auxinput7                = 1,
 frames_per_auxinput8                = 1,
 force_use_old_data                  = .true.,
-debug_level                         = 0, !500 depuracao detalhada, !0 mostra mensagens essenciais
+debug_level                         = 1, !500 depuracao detalhada, !0 mostra mensagens essenciais
 /
 
 &domains
@@ -71,8 +71,8 @@ parent_grid_ratio                   = 1,
 parent_time_step_ratio              = 1,
 feedback                            = 1,
 smooth_option                       = 0,
-nproc_x                             = 16,    ! 8 × 12 = 96 -> rodar com 96 tarefas: mpirun -np 96 ./wrf.exe
-nproc_y                             = 24,   ! 8 × 12 = 96 -> rodar com 96 tarefas: mpirun -np 96 ./wrf.exe
+nproc_x                             = 8,    ! 8 × 12 = 96 -> rodar com 96 tarefas: mpirun -np 96 ./wrf.exe
+nproc_y                             = 12,   ! 8 × 12 = 96 -> rodar com 96 tarefas: mpirun -np 96 ./wrf.exe
 /
 
 &physics

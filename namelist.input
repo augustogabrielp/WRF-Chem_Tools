@@ -1,17 +1,17 @@
 &time_control
-run_days                            = 1, ! Ajustar p/ rodada
+run_days                            = 3, ! Ajustar p/ rodada
 run_hours                           = 0, ! Ajustar p/ rodada
 run_minutes                         = 0,
 run_seconds                         = 0,
 start_year                          = 2024,
 start_month                         = 09,
-start_day                           = 03,
+start_day                           = 02,
 start_hour                          = 00,
 start_minute                        = 00,
 start_second                        = 00,
 end_year                            = 2024,
 end_month                           = 09,
-end_day                             = 04, ! ATENCAO
+end_day                             = 05, ! ATENCAO
 end_hour                            = 00, ! ATENCAO
 end_minute                          = 00,
 end_second                          = 00,
@@ -28,6 +28,7 @@ auxinput5_interval_m                = 1440,    ! 1380 min = 23 hrs
 auxinput6_interval_m                = 1440,    ! 1380 min = 23 hrs
 auxinput7_interval_m                = 1440,    ! 1380 min = 23 hrs
 auxinput8_interval_m                = 1440,    ! 1380 min = 23 hrs
+auxinput12_interval_m               = 1440,
 io_form_history                     = 2, !5,
 io_form_restart                     = 2, !11,  !2
 io_form_input                       = 2,
@@ -38,14 +39,15 @@ io_form_auxinput7                   = 2, ! Verificar melhor
 io_form_auxinput8                   = 2, ! Verificar melhor
 io_form_auxinput12                  = 2, ! 0,      ! avaliar
 auxinput5_inname                    = 'wrfchemi_d<domain>_<date>',
-auxinput6_inname                    = 'wrfbiochemi_d<domain>'
+auxinput6_inname                    = 'wrfbiochemi_d<domain>_<date>'
 auxinput7_inname                    = 'wrffirechemi_d<domain>_<date>',
 auxinput8_inname                    = 'wrfchemi_gocart_bg_d<domain>_<date>',
-auxinput12_inname                   = 'wrf_chem_input',                ! avaliar
+auxinput12_inname                   = 'wrf_chem_input_<date>',                ! avaliar
 frames_per_auxinput5                = 1,
 frames_per_auxinput6                = 1,
 frames_per_auxinput7                = 1,
 frames_per_auxinput8                = 1,
+frames_per_auxinput12               = 1,
 force_use_old_data                  = .true.,
 debug_level                         = 1, !500 depuracao detalhada, !0 mostra mensagens essenciais
 /
@@ -71,12 +73,12 @@ parent_grid_ratio                   = 1,
 parent_time_step_ratio              = 1,
 feedback                            = 1,
 smooth_option                       = 0,
-nproc_x                             = 8,    ! 8 × 12 = 96 -> rodar com 96 tarefas: mpirun -np 96 ./wrf.exe
-nproc_y                             = 12,   ! 8 × 12 = 96 -> rodar com 96 tarefas: mpirun -np 96 ./wrf.exe
+nproc_x                             = 4, ! wrf_chem7.slurm !8,    ! 8 × 12 = 96 -> rodar com 96 tarefas: mpirun -np 96 ./wrf.exe
+nproc_y                             = 16,! wrf_chem7.slurm !12,   ! 8 × 12 = 96 -> rodar com 96 tarefas: mpirun -np 96 ./wrf.exe
 /
 
 &physics
-mp_physics                          = 5, ! 8 Thompson - 5 Eta (Ferrier)
+mp_physics                          = 8, ! 8 Thompson - 5 Eta (Ferrier)
 ra_lw_physics                       = 4,
 ra_sw_physics                       = 4,
 radt                                = 10,
@@ -169,7 +171,7 @@ nio_groups = 1,
 
 /
 
-&io_fields
- iofields_filename      = 'wrfout_fields.txt',
- ignore_iofields_warning = .true.,
-/
+!&io_fields
+! iofields_filename      = 'wrfout_fields.txt',
+! ignore_iofields_warning = .true.,
+!/

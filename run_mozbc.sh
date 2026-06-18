@@ -1,5 +1,6 @@
 #!/bin/bash
-
+# wacc-20250313114216737859.nc  AGOSTO
+# waccm-20250710125538085374.nc SETEMBTO
 module purge
 module load hdf5/1.10.8
 module load netcdf/4.9.2

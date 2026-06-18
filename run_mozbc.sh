@@ -1,9 +1,15 @@
 #!/bin/bash
 # wacc-20250313114216737859.nc  AGOSTO
 # waccm-20250710125538085374.nc SETEMBTO
+
+# module purge
+# module load hdf5/1.10.8
+# module load netcdf/4.9.2
+
 module purge
-module load hdf5/1.10.8
-module load netcdf/4.9.2
+module load gnu9/9.4.0
+module avail hdf5
+module avail netcdf
 
 cp /home/augusto.pereira/BUILD_WRF/WRF-4.6.0/1MY_SUMULATION/data_mozbc/mozbc.inp-FOR-GOCART301 /home/augusto.pereira/BUILD_WRF/Processors/mozbc/mozbc.inp
 
